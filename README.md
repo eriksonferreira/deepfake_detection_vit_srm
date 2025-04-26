@@ -72,6 +72,8 @@ Utilizamos a arquitetura híbrida CrossViT, especificamente a versão CrossViT-1
 - Filtro Sobel aplicado no pré-processamento ou diretamente nas ramificações (L-Branch ou S-Branch)
 - Filtro SRM aplicado no pré-processamento ou diretamente nas ramificações
 
+- Link para os modelos treinados [aqui](https://drive.google.com/drive/folders/186yXC0KDYzv-5EnAleIp3qxhlUi519Ok?usp=sharing)
+
 ## Treinamento
 
 Exemplo de comando para treinamento do modelo CrossViT com filtro SRM na ramificação L-Branch:
