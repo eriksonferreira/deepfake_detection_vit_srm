@@ -77,7 +77,7 @@ Utilizamos a arquitetura híbrida CrossViT, especificamente a versão CrossViT-1
 Exemplo de comando para treinamento do modelo CrossViT com filtro SRM na ramificação L-Branch:
 
 ```shell
-python train.py --model crossvit_18_dagger --filter SRM --branch L --data-path /path/to/dataset
+python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --model crossvit_18_dagger_224 --nb_classes 1 --epochs 200 --batch-size 96 --data-set DFDC --output_dir /home/eferreira/master/cross-vit/CrossViT/old_logs/17_sobel_0_5 --drop 0.5 --clip-grad 0.5 --pretrained --is_experiment
 ```
 
 

@@ -1,0 +1,41 @@
+python3 detect_faces.py --data_path "/home/eferreira/master/storage/dfdc/dfdc/train"
+
+
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/dfdc/dfdc/train" --output_path "/home/eferreira/master/storage/dfdc/dfdc/faces" 
+
+python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --model crossvit_9_dagger_224 --batch-size 32 --data-set DFDC
+
+pip install --pre torch torchvision -f https://download.pytorch.org/whl/nightly/cu110/torch_nightly.html -U
+
+python main.py --model crossvit_9_dagger_224 --batch-size 128 --data-set DFDC
+
+python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --model crossvit_tiny_224 --nb_classes 1 --batch-size 300 --data-set DFDC --output_dir /home/eferreira/master/cross-vit/CrossViT/logs
+
+python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --model crossvit_tiny_224 --nb_classes 2 --batch-size 512 --data-set DFDC --output_dir /home/eferreira/master/cross-vit/CrossViT/logs
+
+
+https://github.com/smu-ivpl/DeepfakeDetection/blob/master/training/pipelines/train_classifier.py
+
+https://github.com/selimsef/dfdc_deepfake_challenge/tree/master
+
+
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/DeepFakeDetection/raw/videos" --output_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/DeepFakeDetection/raw/videos/faces" 
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/Deepfakes/raw/videos" --output_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/Deepfakes/raw/videos/faces" 
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/Face2Face/raw/videos" --output_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/Face2Face/raw/videos/faces" 
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/FaceShifter/raw/videos" --output_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/FaceShifter/raw/videos/faces" 
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/FaceSwap/raw/videos" --output_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/FaceSwap/raw/videos/faces" 
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/NeuralTextures/raw/videos" --output_path "/home/eferreira/master/storage/ff++/ff++/manipulated_sequences/NeuralTextures/raw/videos/faces" 
+
+
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/ff++/ff++/original_sequences/actors/raw/videos" --output_path "/home/eferreira/master/storage/ff++/ff++/original_sequences/actors/raw/videos/faces" 
+python3 extract_crops.py --data_path "/home/eferreira/master/storage/ff++/ff++/original_sequences/youtube/raw/videos" --output_path "/home/eferreira/master/storage/ff++/ff++/original_sequences/youtube/raw/videos/faces" 
+
+
+python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --model crossvit_18_dagger_224 --nb_classes 1 --epochs 200 --batch-size 96 --data-set DFDC --output_dir /home/eferreira/master/cross-vit/CrossViT/old_logs/13 --drop 0.3 --clip-grad 0.3 --pretrained --is_experiment
+
+
+python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --model crossvit_18_dagger_224 --nb_classes 1 --epochs 200 --batch-size 96 --data-set DFDC --output_dir /home/eferreira/master/cross-vit/CrossViT/old_logs/16_new_srm --drop 0.3 --clip-grad 0.3 --pretrained --is_experiment --resume old_logs/16_new_srm/checkpoint.pth 
+
+python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --model crossvit_18_dagger_224 --nb_classes 1 --epochs 200 --batch-size 96 --data-set DFDC --output_dir /home/eferreira/master/cross-vit/CrossViT/old_logs/17_sobel_0_5 --drop 0.5 --clip-grad 0.5 --pretrained --is_experiment
+
+
